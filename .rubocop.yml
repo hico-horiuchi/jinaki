@@ -1,0 +1,46 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Include:
+    - Gemfile
+    - Rakefile
+    - bin/*
+    - config.ru
+    - lib/**/*
+  Exclude:
+    - vendor/**/*
+
+BlockLength:
+  Enabled: false
+
+ClassLength:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+IfUnlessModifier:
+  Enabled: false
+
+LineLength:
+  Enabled: false
+
+Lint/SuppressedException:
+  Enabled: false
+
+MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RescueStandardError:
+  Enabled: false
