@@ -5,8 +5,6 @@ module Jinaki
       include Helper::Esa
 
       def post_events(request)
-        raise UnsignatedError unless signated?(request)
-
         params = JSON.parse(request.body.read, symbolize_names: true)
 
         case params[:kind]
