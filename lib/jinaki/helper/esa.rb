@@ -2,7 +2,7 @@ module Jinaki
   module Helper
     module Esa
       def esa_client
-        @client ||= Esa::Client.new(access_token: ENV['ESA_ACCESS_TOKEN'], current_team: ENV['ESA_CURRENT_TEAM'])
+        @esa_client ||= Esa::Client.new(access_token: ENV['ESA_ACCESS_TOKEN'], current_team: ENV['ESA_CURRENT_TEAM'])
       end
 
       def signated?(request)
