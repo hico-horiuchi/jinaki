@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'esa'
 gem 'rack-esa_webhooks'
 gem 'sinatra'
-gem 'slack-ruby-client'
+gem 'slack-incoming-webhooks'
 
 group :development do
   gem 'pry'
