@@ -1,7 +1,6 @@
 module Jinaki
   module Endpoint
     class Esa
-      include Error::Esa
       include Helper::Esa
       include Helper::Slack
 
