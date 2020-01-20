@@ -1,7 +1,7 @@
 module Jinaki
   module Helper
     module Esa
-      ESA_ICON = 'https://img.esa.io/uploads/production/attachments/105/2019/05/14/2/291fcf8e-866e-4976-974a-81130e3966d7.png'.freeze
+      ESA_ICON = 'https://assets.esa.io/assets/apple-touch-icon-133ed3152feb59153eeaf8849cf1cad0b4447e95f359ce7f621f75fad49d1512.png'
       ESA_COLOR = '#0a9b94'.freeze
 
       def esa_client
