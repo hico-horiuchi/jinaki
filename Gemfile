@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'esa'
 gem 'rack-esa_webhooks'
+gem 'rake'
 gem 'sinatra'
 gem 'slack-incoming-webhooks'
 
