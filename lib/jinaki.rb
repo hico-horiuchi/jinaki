@@ -6,6 +6,7 @@ Bundler.require :default, ENV['RACK_ENV'].to_sym
 $LOAD_PATH << __dir__
 
 require 'jinaki/helper'
+require 'jinaki/model'
 require 'jinaki/endpoint'
 require 'jinaki/route'
 require 'jinaki/app'
