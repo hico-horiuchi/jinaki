@@ -7,8 +7,10 @@ namespace :jinaki do
   desc 'gc'
   task :gc do
     loop do
-      one_week_before = Date.today - 6
-      posts = esa_client.posts(q: "category: 日報 sharing: true created:<#{one_week_before}").body['posts']
+      ENV['PUBLICATION_PERIOD_DAYS'] ||= '7'
+
+      publication_period = Date.today - ENV['PUBLICATION_PERIOD_DAYS'].to_i + 1
+      posts = esa_client.posts(q: "category: 日報 sharing: true created:<#{publication_period}").body['posts']
 
       break if posts.empty?
 

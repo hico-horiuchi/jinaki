@@ -17,7 +17,7 @@ module Jinaki
       def post_update(params)
         post = Model::Post.new(params[:post][:number])
 
-        return if post.wip? || post.shared?
+        return if post.period_exceeded? || post.shared? || post.wip?
 
         post.share
         slack_webhook.post(nil, attachments: [post.to_attachment])
