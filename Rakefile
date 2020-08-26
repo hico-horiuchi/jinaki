@@ -1,6 +1,6 @@
 require File.expand_path('lib/jinaki', __dir__)
 
-include Jinaki::Helper::Esa
+include Jinaki::Helper::Esa # rubocop:disable Style/MixinUsage
 
 desc 'jinaki'
 namespace :jinaki do

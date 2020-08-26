@@ -3,7 +3,7 @@ module Jinaki
     class Post
       include Helper::Esa
 
-      attr_reader :sharing_url, :updated_at
+      attr_reader :sharing_url
 
       def initialize(number)
         @number = number
