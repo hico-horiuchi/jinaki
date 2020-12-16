@@ -1,13 +1,14 @@
 AllCops:
-  TargetRubyVersion: 2.7
+  Exclude:
+    - vendor/**/*
   Include:
     - Gemfile
     - Rakefile
     - bin/*
     - config.ru
     - lib/**/*
-  Exclude:
-    - vendor/**/*
+  NewCops: enable
+  TargetRubyVersion: 2.7
 
 Documentation:
   Enabled: false
