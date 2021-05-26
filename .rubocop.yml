@@ -8,6 +8,7 @@ AllCops:
     - config.ru
     - lib/**/*
   NewCops: enable
+  SuggestExtensions: false
   TargetRubyVersion: 3.0
 
 Documentation:

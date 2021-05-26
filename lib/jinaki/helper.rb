@@ -1,4 +1,4 @@
-Dir["#{__dir__}/helper/*.rb"].sort.each { |f| require f }
+Dir["#{__dir__}/helper/*.rb"].each { |f| require f }
 
 module Jinaki
   module Helper

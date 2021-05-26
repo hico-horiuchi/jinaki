@@ -1,4 +1,4 @@
-Dir["#{__dir__}/route/*.rb"].sort.each { |f| require f }
+Dir["#{__dir__}/route/*.rb"].each { |f| require f }
 
 module Jinaki
   module Route

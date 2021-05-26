@@ -1,4 +1,4 @@
-Dir["#{__dir__}/endpoint/*.rb"].sort.each { |f| require f }
+Dir["#{__dir__}/endpoint/*.rb"].each { |f| require f }
 
 module Jinaki
   module Endpoint
