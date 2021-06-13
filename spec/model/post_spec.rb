@@ -9,18 +9,21 @@ describe Jinaki::Model::Post do
   end
 
   context '#period_exceeded?' do
+    publication_period_days = 7
+
     let(:response_body) { { created_at: created_at } }
 
     subject { post_model.period_exceeded? }
 
     before do
       allow(ENV).to receive(:[]).and_call_original
-      allow(ENV).to receive(:[]).with('PUBLICATION_PERIOD_DAYS').and_return('7')
+      allow(ENV).to receive(:[]).with('PUBLICATION_PERIOD_DAYS').and_return(publication_period_days.to_s)
     end
 
     [
-      [(Time.now - 60 * 60 * 24 * 7).iso8601, true],
-      [(Time.now - 60 * 60 * 24 * 6).iso8601, false]
+      [(Time.now - 60 * 60 * 24 * (publication_period_days + 1)).iso8601, true],
+      [(Time.now - 60 * 60 * 24 * publication_period_days).iso8601, true],
+      [(Time.now - 60 * 60 * 24 * (publication_period_days - 1)).iso8601, false]
     ].each do |created_at, result|
       context "if created_at is #{created_at}" do
         let(:created_at) { created_at }
