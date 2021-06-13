@@ -16,7 +16,6 @@ RSpec.configure do |config|
 
   config.example_status_persistence_file_path = 'spec/examples.txt'
   config.order = :random
-  config.pattern = 'spec/**/*_spec.rb'
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.warnings = true
 

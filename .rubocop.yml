@@ -11,10 +11,10 @@ AllCops:
   SuggestExtensions: false
   TargetRubyVersion: 3.0
 
-Documentation:
+Layout/LineLength:
   Enabled: false
 
-LineLength:
+Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
