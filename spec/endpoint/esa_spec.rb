@@ -17,7 +17,7 @@ describe Jinaki::Endpoint::Esa do
       ['comment_create', nil],
       ['member_join', nil]
     ].each do |kind, method|
-      context "when kind is #{kind}", if: method do
+      context "when kind is '#{kind}'", if: method do
         let(:kind) { kind }
 
         before { allow_any_instance_of(described_class).to receive(method) }
@@ -64,12 +64,12 @@ describe Jinaki::Endpoint::Esa do
         let(:shared) { shared }
         let(:wip) { wip }
 
-        it ('post will be shared'), if: result do
+        it 'post will be shared', if: result do
           expect(@post).to receive(:share).once
           subject
         end
 
-        it ('post will not be shared'), unless: result do
+        it 'post will not be shared', unless: result do
           expect(@post).not_to receive(:share)
           subject
         end
