@@ -22,7 +22,7 @@ describe Jinaki::Endpoint::Esa do
 
         before { allow_any_instance_of(described_class).to receive(method) }
 
-        it ("##{method} is called") do
+        it "##{method} is called" do
           expect_any_instance_of(described_class).to receive(method).once
           subject
         end
@@ -58,18 +58,18 @@ describe Jinaki::Endpoint::Esa do
       [false, false, true, false],
       [false, false, false, true]
     ].each do |period_exceeded, shared, wip, result|
-      context ("when period_exceeded is #{period_exceeded}, shared is #{shared}, wip is #{wip}") do
+      context "when period_exceeded is #{period_exceeded}, shared is #{shared}, wip is #{wip}" do
         let(:params) { { post: { number: nil } } }
         let(:period_exceeded) { period_exceeded }
         let(:shared) { shared }
         let(:wip) { wip }
 
-        it ("post will be shared"), if: result do
+        it ('post will be shared'), if: result do
           expect(@post).to receive(:share).once
           subject
         end
 
-        it ("post will not be shared"), unless: result do
+        it ('post will not be shared'), unless: result do
           expect(@post).not_to receive(:share)
           subject
         end
