@@ -19,7 +19,7 @@ describe Jinaki::Route::Esa do
         end
 
         it "status #{status}" do
-          expect(subject.status).to eq status
+          expect(subject.status).to eq(status)
         end
       end
     end
