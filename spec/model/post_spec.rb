@@ -41,7 +41,7 @@ describe Jinaki::Model::Post do
     subject { post_model.shared? }
 
     [
-      [{ "html" => "", "slides" => "" }, true],
+      [{ 'html' => '', 'slides' => '' }, true],
       [nil, false]
     ].each do |sharing_urls, result|
       context "if sharing_urls is #{sharing_urls}" do
