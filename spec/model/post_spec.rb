@@ -21,9 +21,9 @@ describe Jinaki::Model::Post do
     end
 
     [
-      [(Time.now - 60 * 60 * 24 * (publication_period_days + 1)).iso8601, true],
-      [(Time.now - 60 * 60 * 24 * publication_period_days).iso8601, true],
-      [(Time.now - 60 * 60 * 24 * (publication_period_days - 1)).iso8601, false]
+      [(Time.now - (60 * 60 * 24 * (publication_period_days + 1))).iso8601, true],
+      [(Time.now - (60 * 60 * 24 * publication_period_days)).iso8601, true],
+      [(Time.now - (60 * 60 * 24 * (publication_period_days - 1))).iso8601, false]
     ].each do |created_at, result|
       context "if created_at is #{created_at}" do
         let(:created_at) { created_at }
