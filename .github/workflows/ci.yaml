@@ -23,7 +23,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check
           rubocop_version: gemfile
-  test:
+  unit_test:
     runs-on: ubuntu-latest
     needs:
       - lint
@@ -35,5 +35,5 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: ${{ env.RUBY_VERSION }}
-      - name: rspec
+      - name: bundle exec rspec
         run: bundle exec rspec
