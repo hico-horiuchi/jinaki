@@ -3,7 +3,7 @@ describe Jinaki::Endpoint::Esa do
 
   context '#post_events' do
     let(:request) { JSON.parse({ body: { read: request_body } }.to_json, object_class: OpenStruct) }
-    let(:request_body) { { kind: kind }.to_json }
+    let(:request_body) { { kind: }.to_json }
 
     subject { esa_endpoint.post_events(request) }
 
