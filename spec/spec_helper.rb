@@ -1,5 +1,9 @@
 ENV['RACK_ENV'] = 'test'
 
+require 'simplecov'
+
+SimpleCov.start
+
 require File.expand_path('../lib/jinaki', __dir__)
 
 RSpec.configure do |config|
