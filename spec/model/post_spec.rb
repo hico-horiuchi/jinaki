@@ -11,7 +11,7 @@ describe Jinaki::Model::Post do
   context '#period_exceeded?' do
     publication_period_days = 7
 
-    let(:response_body) { { created_at: created_at } }
+    let(:response_body) { { created_at: } }
 
     subject { post_model.period_exceeded? }
 
@@ -36,7 +36,7 @@ describe Jinaki::Model::Post do
   end
 
   context '#shared?' do
-    let(:response_body) { { sharing_urls: sharing_urls } }
+    let(:response_body) { { sharing_urls: } }
 
     subject { post_model.shared? }
 
@@ -55,7 +55,7 @@ describe Jinaki::Model::Post do
   end
 
   context '#wip?' do
-    let(:response_body) { { wip: wip } }
+    let(:response_body) { { wip: } }
 
     subject { post_model.wip? }
 
