@@ -1,11 +1,11 @@
-describe Jinaki::Endpoint::Esa do
-  let(:esa_endpoint) { described_class.new }
+describe Jinaki::Controller::Esa do
+  let(:esa_controller) { described_class.new }
 
   context '#post_events' do
     let(:request) { JSON.parse({ body: { read: request_body } }.to_json, object_class: OpenStruct) }
     let(:request_body) { { kind: }.to_json }
 
-    subject { esa_endpoint.post_events(request) }
+    subject { esa_controller.post_events(request) }
 
     [
       ['post_create', nil],
@@ -46,7 +46,7 @@ describe Jinaki::Endpoint::Esa do
       allow(@slack_webhook).to receive(:post)
     end
 
-    subject { esa_endpoint.send(:post_update, params) }
+    subject { esa_controller.send(:post_update, params) }
 
     [
       [true, true, true, false],

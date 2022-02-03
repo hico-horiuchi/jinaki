@@ -10,11 +10,11 @@ describe Jinaki::Route::Esa do
       [:delete, nil, 404]
     ].each do |method, action, status|
       context method do
-        before { allow_any_instance_of(Jinaki::Endpoint::Esa).to receive(action) if action }
+        before { allow_any_instance_of(Jinaki::Controller::Esa).to receive(action) if action }
         subject { send(method, path) }
 
         it "##{action} is called", if: action do
-          expect_any_instance_of(Jinaki::Endpoint::Esa).to receive(action).once
+          expect_any_instance_of(Jinaki::Controller::Esa).to receive(action).once
           subject
         end
 
