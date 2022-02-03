@@ -1,5 +1,5 @@
 module Jinaki
-  module Endpoint
+  module Controller
     class Esa
       include Helper::Slack
 

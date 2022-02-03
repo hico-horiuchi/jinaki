@@ -7,7 +7,7 @@ $LOAD_PATH << __dir__
 
 require 'jinaki/helper'
 require 'jinaki/model'
-require 'jinaki/endpoint'
+require 'jinaki/controller'
 require 'jinaki/route'
 require 'jinaki/app'
 
