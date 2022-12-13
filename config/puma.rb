@@ -10,4 +10,4 @@ end
 
 environment ENV['RACK_ENV'] || 'development'
 port ENV['PORT'] || 5000
-rackup DefaultRackup
+rackup DefaultRackup if defined?(DefaultRackup)
