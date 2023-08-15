@@ -4,11 +4,23 @@ on:
     types:
       - opened
       - synchronize
-env:
-  RUBY_VERSION: '3.2.2'
 jobs:
+  preparation:
+    runs-on: ubuntu-latest
+    outputs:
+      ruby_version: ${{ steps.ruby.outputs.version }}
+    steps:
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v2
+      - name: set version
+        id: version
+        run: |
+          version=$(cat .ruby-version)
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
   lint:
     runs-on: ubuntu-latest
+    needs:
+      - preparation
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v2
@@ -16,7 +28,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          ruby-version: ${{ env.RUBY_VERSION }}
+          ruby-version: ${{ needs.preparation.outputs.ruby_version }}
       # https://github.com/reviewdog/action-rubocop
       - uses: reviewdog/action-rubocop@v1
         with:
@@ -26,6 +38,7 @@ jobs:
   unit_test:
     runs-on: ubuntu-latest
     needs:
+      - preparation
       - lint
     steps:
       # https://github.com/actions/checkout
@@ -34,18 +47,18 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          ruby-version: ${{ env.RUBY_VERSION }}
+          ruby-version: ${{ needs.preparation.outputs.ruby_version }}
       - name: bundle exec rspec
         run: bundle exec rspec
-      - name: set-output name=coverage
-        id: set_output_name_coverage
+      - name: set coverage
+        id: coverage
         run: |
           coverage=$(cat coverage/.last_run.json | jq -r '.result.line')
-          echo "::set-output name=coverage::${coverage}"
+          echo "coverage=${coverage}" >> "${GITHUB_OUTPUT}"
       # https://github.com/actions/github-script
       - uses: actions/github-script@v5
         env:
-          COVERAGE: ${{ steps.set_output_name_coverage.outputs.coverage }}
+          COVERAGE: ${{ steps.coverage.outputs.coverage }}
         with:
           script: |
             const body = `Coverage: ${process.env.COVERAGE}%`
