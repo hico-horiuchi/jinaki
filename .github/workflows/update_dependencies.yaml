@@ -10,7 +10,7 @@ jobs:
       ruby_version: ${{ steps.ruby.outputs.version }}
     steps:
       # https://github.com/actions/checkout
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: set version
         id: version
         run: |
@@ -22,14 +22,16 @@ jobs:
       - preparation
     steps:
       # https://github.com/actions/checkout
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       # https://github.com/ruby/setup-ruby
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: ${{ needs.preparation.outputs.ruby_version }}
       - name: bundle update
-        run: bundle update
+        run: |
+          bundle config set frozen false
+          bundle update
       - name: set date
         id: date
         run: |
