@@ -23,8 +23,6 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
       # https://github.com/ruby/setup-ruby
       - uses: ruby/setup-ruby@v1
         with:
@@ -41,8 +39,16 @@ jobs:
           echo "date=${date}" >> "${GITHUB_OUTPUT}"
       # https://github.com/peter-evans/create-pull-request
       - uses: peter-evans/create-pull-request@v5
+        id: create_pull_request
         with:
           branch: dependencies/${{ steps.date.outputs.date }}
           commit-message: ":arrow_up: Update dependencies"
           labels: dependencies
           title: ⬆️ Update dependencies at ${{ steps.date.outputs.date }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      # https://github.com/peter-evans/enable-pull-request-automerge
+      - uses: peter-evans/enable-pull-request-automerge@v3
+        if: steps.create_pull_request.outputs.pull-request-operation == 'created'
+        with:
+          pull-request-number: ${{ steps.create_pull_request.outputs.pull-request-number }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
