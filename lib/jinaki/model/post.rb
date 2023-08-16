@@ -30,8 +30,8 @@ module Jinaki
         {
           title: @body.full_name,
           title_link: @sharing_url,
-          author_name: ENV['ESA_CURRENT_TEAM'],
-          author_link: "https://#{ENV['ESA_CURRENT_TEAM']}.esa.io",
+          author_name: ENV.fetch('ESA_CURRENT_TEAM', nil),
+          author_link: "https://#{ENV.fetch('ESA_CURRENT_TEAM', nil)}.esa.io",
           author_icon: ESA_ICON,
           footer: "Updated at #{updated_at.strftime('%Y/%m/%d %H:%M')} by #{@body.updated_by.name}",
           footer_icon: @body.updated_by.icon,

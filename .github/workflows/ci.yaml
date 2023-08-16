@@ -30,10 +30,10 @@ jobs:
           bundler-cache: true
           ruby-version: ${{ needs.preparation.outputs.ruby_version }}
       # https://github.com/reviewdog/action-rubocop
-      - uses: reviewdog/action-rubocop@v1
+      - uses: reviewdog/action-rubocop@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-check
+          reporter: github-pr-review
+          rubocop_extensions: rubocop-performance rubocop-rake:gemfile rubocop-rspec:gemfile
           rubocop_version: gemfile
   unit_test:
     runs-on: ubuntu-latest

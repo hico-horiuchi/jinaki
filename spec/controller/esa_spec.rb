@@ -1,11 +1,11 @@
 describe Jinaki::Controller::Esa do
   let(:esa_controller) { described_class.new }
 
-  context '#post_events' do
+  describe '#post_events' do
+    subject { esa_controller.post_events(request) }
+
     let(:request) { JSON.parse({ body: { read: request_body } }.to_json, object_class: OpenStruct) }
     let(:request_body) { { kind: }.to_json }
-
-    subject { esa_controller.post_events(request) }
 
     [
       ['post_create', nil],
@@ -20,33 +20,31 @@ describe Jinaki::Controller::Esa do
       context "when kind is '#{kind}'", if: method do
         let(:kind) { kind }
 
-        before { allow_any_instance_of(described_class).to receive(method) }
+        before { allow(esa_controller).to receive(method) }
 
         it "##{method} is called" do
-          expect_any_instance_of(described_class).to receive(method).once
           subject
+          expect(esa_controller).to have_received(method).once
         end
       end
     end
   end
 
-  context '#post_update' do
-    before do
-      @post = double('Jinaki::Model::Post')
-      @slack_webhook = double('Slack::Incoming::Webhooks')
-
-      allow(Jinaki::Model::Post).to receive(:new).and_return(@post)
-      allow(@post).to receive(:period_exceeded?).and_return(period_exceeded)
-      allow(@post).to receive(:shared?).and_return(shared)
-      allow(@post).to receive(:wip?).and_return(wip)
-      allow(@post).to receive(:share)
-      allow(@post).to receive(:to_attachment)
-
-      allow(Slack::Incoming::Webhooks).to receive(:new).and_return(@slack_webhook)
-      allow(@slack_webhook).to receive(:post)
-    end
-
+  describe '#post_update' do
     subject { esa_controller.send(:post_update, params) }
+
+    let(:post_model) { instance_double(Jinaki::Model::Post) }
+    let(:slack_incoming_webhooks) { instance_double(Slack::Incoming::Webhooks) }
+
+    before do
+      allow(Jinaki::Model::Post).to receive(:new).and_return(post_model)
+      allow(post_model).to receive_messages(period_exceeded?: period_exceeded, shared?: shared, wip?: wip)
+      allow(post_model).to receive(:share)
+      allow(post_model).to receive(:to_attachment)
+
+      allow(Slack::Incoming::Webhooks).to receive(:new).and_return(slack_incoming_webhooks)
+      allow(slack_incoming_webhooks).to receive(:post)
+    end
 
     [
       [true, true, true, false],
@@ -65,13 +63,13 @@ describe Jinaki::Controller::Esa do
         let(:wip) { wip }
 
         it 'post will be shared', if: result do
-          expect(@post).to receive(:share).once
           subject
+          expect(post_model).to have_received(:share).once
         end
 
         it 'post will not be shared', unless: result do
-          expect(@post).not_to receive(:share)
           subject
+          expect(post_model).not_to have_received(:share)
         end
       end
     end
