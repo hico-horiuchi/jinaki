@@ -1,5 +1,5 @@
 describe Jinaki::Route::Esa do
-  context '/esa/events' do
+  context 'with /esa/events' do
     let(:path) { '/esa/events' }
 
     [
@@ -9,12 +9,13 @@ describe Jinaki::Route::Esa do
       [:patch, nil, 404],
       [:delete, nil, 404]
     ].each do |method, action, status|
-      context method do
-        before { allow_any_instance_of(Jinaki::Controller::Esa).to receive(action) if action }
+      context "when #{method}" do
         subject { send(method, path) }
 
+        before { allow_any_instance_of(Jinaki::Controller::Esa).to receive(action) if action } # rubocop:disable RSpec/AnyInstance
+
         it "##{action} is called", if: action do
-          expect_any_instance_of(Jinaki::Controller::Esa).to receive(action).once
+          expect_any_instance_of(Jinaki::Controller::Esa).to receive(action).once # rubocop:disable RSpec/AnyInstance
           subject
         end
 

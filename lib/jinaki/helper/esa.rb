@@ -7,7 +7,7 @@ module Jinaki
       private
 
       def esa_client
-        @esa_client ||= ::Esa::Client.new(access_token: ENV['ESA_ACCESS_TOKEN'], current_team: ENV['ESA_CURRENT_TEAM'])
+        @esa_client ||= ::Esa::Client.new(access_token: ENV.fetch('ESA_ACCESS_TOKEN', nil), current_team: ENV.fetch('ESA_CURRENT_TEAM', nil))
       end
     end
   end

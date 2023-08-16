@@ -1,7 +1,7 @@
 module Jinaki
   class App < Sinatra::Base
     configure :production do
-      use Rack::EsaWebhooks, secret: ENV['ESA_SECRET_TOKEN']
+      use Rack::EsaWebhooks, secret: ENV.fetch('ESA_SECRET_TOKEN', nil)
     end
 
     register Route::Esa
