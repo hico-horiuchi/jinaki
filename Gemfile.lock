@@ -12,7 +12,8 @@ GEM
       faraday-xml
       mime-types (>= 2.6, < 4.0)
       multi_xml (>= 0.5.5, < 1.0)
-    faraday (2.7.10)
+    faraday (2.7.11)
+      base64
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-multipart (1.0.4)
@@ -64,7 +65,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.1)
-    rubocop (1.56.2)
+    rubocop (1.56.3)
       base64 (~> 0.1.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -87,7 +88,7 @@ GEM
       rubocop-ast (>= 0.4.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (2.23.2)
+    rubocop-rspec (2.24.0)
       rubocop (~> 1.33)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
@@ -105,7 +106,7 @@ GEM
       rack-protection (= 3.1.0)
       tilt (~> 2.0)
     slack-incoming-webhooks (0.3.0)
-    tilt (2.2.0)
+    tilt (2.3.0)
     unicode-display_width (2.4.2)
 
 PLATFORMS
