@@ -11,7 +11,7 @@ jobs:
       ruby_version: ${{ steps.ruby.outputs.version }}
     steps:
       # https://github.com/actions/checkout
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: set version
         id: version
         run: |
@@ -23,7 +23,7 @@ jobs:
       - preparation
     steps:
       # https://github.com/actions/checkout
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # https://github.com/ruby/setup-ruby
       - uses: ruby/setup-ruby@v1
         with:
@@ -42,7 +42,7 @@ jobs:
       - lint
     steps:
       # https://github.com/actions/checkout
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # https://github.com/ruby/setup-ruby
       - uses: ruby/setup-ruby@v1
         with:
@@ -56,7 +56,7 @@ jobs:
           coverage=$(cat coverage/.last_run.json | jq -r '.result.line')
           echo "coverage=${coverage}" >> "${GITHUB_OUTPUT}"
       # https://github.com/actions/github-script
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         env:
           COVERAGE: ${{ steps.coverage.outputs.coverage }}
         with:
