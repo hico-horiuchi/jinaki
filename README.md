@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/hico-horiuchi/jinaki/actions/workflows/ci.yaml/badge.svg)](https://github.com/hico-horiuchi/jinaki/actions/workflows/ci.yaml)
 
-地鳴: esa.io daily report notificator for slack
+地鳴: esa.io daily report notificator for Slack
 
 ### Screenshot
 
