@@ -10,7 +10,9 @@ gem 'sinatra'
 gem 'slack-incoming-webhooks'
 
 group :development do
+  gem 'debug', require: false
   gem 'pry'
+  gem 'ruby-lsp', require: false
 end
 
 group :test do
