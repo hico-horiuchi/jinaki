@@ -44,7 +44,7 @@ GEM
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
-    prism (0.24.0)
+    prism (0.27.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -67,7 +67,7 @@ GEM
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
     regexp_parser (2.9.0)
-    reline (0.5.2)
+    reline (0.5.3)
       io-console (~> 0.5)
     rexml (3.2.6)
     rspec (3.13.0)
@@ -83,7 +83,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.1)
-    rubocop (1.63.2)
+    rubocop (1.63.3)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -112,9 +112,9 @@ GEM
       rubocop-rspec_rails (~> 2.28)
     rubocop-rspec_rails (2.28.3)
       rubocop (~> 1.40)
-    ruby-lsp (0.16.4)
+    ruby-lsp (0.16.5)
       language_server-protocol (~> 3.17.0)
-      prism (>= 0.22.0, < 0.25)
+      prism (>= 0.23.0, < 0.28)
       sorbet-runtime (>= 0.5.10782)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
@@ -131,7 +131,7 @@ GEM
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     slack-incoming-webhooks (0.3.0)
-    sorbet-runtime (0.5.11352)
+    sorbet-runtime (0.5.11358)
     stringio (3.1.0)
     tilt (2.3.0)
     unicode-display_width (2.5.0)
@@ -160,7 +160,7 @@ DEPENDENCIES
   slack-incoming-webhooks
 
 RUBY VERSION
-   ruby 3.3.0p0
+   ruby 3.3.1p55
 
 BUNDLED WITH
-   2.5.5
+   2.5.9
