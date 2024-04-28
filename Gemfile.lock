@@ -41,7 +41,7 @@ GEM
       uri
     nio4r (2.7.1)
     parallel (1.24.0)
-    parser (3.3.0.5)
+    parser (3.3.1.0)
       ast (~> 2.4.1)
       racc
     prism (0.27.0)
@@ -112,7 +112,7 @@ GEM
       rubocop-rspec_rails (~> 2.28)
     rubocop-rspec_rails (2.28.3)
       rubocop (~> 1.40)
-    ruby-lsp (0.16.5)
+    ruby-lsp (0.16.6)
       language_server-protocol (~> 3.17.0)
       prism (>= 0.23.0, < 0.28)
       sorbet-runtime (>= 0.5.10782)
@@ -131,7 +131,7 @@ GEM
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     slack-incoming-webhooks (0.3.0)
-    sorbet-runtime (0.5.11358)
+    sorbet-runtime (0.5.11361)
     stringio (3.1.0)
     tilt (2.3.0)
     unicode-display_width (2.5.0)
