@@ -44,7 +44,7 @@ jobs:
           branch: dependencies/${{ steps.date.outputs.date }}
           commit-message: ":arrow_up: Update dependencies"
           labels: dependencies
-          title: ⬆️ Update dependencies at ${{ steps.date.outputs.date }}
+          title: Update dependencies at ${{ steps.date.outputs.date }}
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       # https://github.com/peter-evans/enable-pull-request-automerge
       - uses: peter-evans/enable-pull-request-automerge@v3
