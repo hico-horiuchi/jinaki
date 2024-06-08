@@ -3,6 +3,7 @@ ruby file: '.ruby-version'
 source 'https://rubygems.org'
 
 gem 'esa'
+gem 'faraday'
 gem 'puma'
 gem 'rack-esa_webhooks'
 gem 'rake'
