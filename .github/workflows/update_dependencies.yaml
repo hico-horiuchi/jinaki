@@ -23,7 +23,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const release = github.rest.repos.getLatestRelease({
+            const release = await github.rest.repos.getLatestRelease({
               owner: 'ruby',
               repo: 'ruby'
             })
