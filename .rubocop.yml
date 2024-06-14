@@ -38,9 +38,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Enabled: false
 
-RSpec/FilePath:
-  Enabled: false
-
 RSpec/MessageChain:
   Enabled: false
 

@@ -1,5 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 
+require 'ostruct'
 require 'simplecov'
 
 SimpleCov.start
