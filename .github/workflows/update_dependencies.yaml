@@ -7,15 +7,28 @@ jobs:
   preparation:
     runs-on: ubuntu-latest
     outputs:
-      ruby_version: ${{ steps.ruby.outputs.version }}
+      current_ruby_version: ${{ steps.current_ruby.outputs.version }}
+      latest_ruby_version: ${{ steps.latest_ruby.outputs.result }}
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v4
       - name: set ruby version
-        id: ruby
+        id: current_ruby
         run: |
           version=$(cat .ruby-version)
           echo "version=${version}" >> "${GITHUB_OUTPUT}"
+      # https://github.com/actions/github-script
+      - uses: actions/github-script@v7
+        id: latest_ruby
+        with:
+          result-encoding: string
+          script: |
+            const release = github.rest.repos.getLatestRelease({
+              owner: 'ruby',
+              repo: 'ruby'
+            })
+
+            return release.name.replace(/^v/, '')
   pull_request:
     runs-on: ubuntu-latest
     needs:
@@ -23,11 +36,17 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v4
+      - name: update ruby version
+        env:
+          CURRENT: ${{ needs.preparation.outputs.current_ruby_version }}
+          LATEST: ${{ needs.preparation.outputs.latest_ruby_version }}
+        run: |
+          [ "$(echo ${CURRENT} | sed -r 's/\.[0-9]+$//g')" = "$(echo ${LATEST} | sed -r 's/\.[0-9]+$//g')" ]; ret=${?}
+          [ ${ret} = 0 ] && echo "${LATEST}" > .ruby-version
       # https://github.com/ruby/setup-ruby
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          ruby-version: ${{ needs.preparation.outputs.ruby_version }}
       - name: bundle update
         run: |
           bundle config set frozen false
