@@ -7,7 +7,7 @@ module Jinaki
 
       def initialize(number)
         @number = number
-        @body = JSON.parse(esa_client.post(@number).body.to_json, object_class: OpenStruct)
+        @body = JSON.parse(esa_client.post(@number).body.to_json, object_class: ::OpenStruct)
       end
 
       def period_exceeded?
