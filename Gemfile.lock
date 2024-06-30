@@ -75,7 +75,7 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
-    rexml (3.3.0)
+    rexml (3.3.1)
       strscan
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
@@ -130,10 +130,10 @@ GEM
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     slack-incoming-webhooks (0.3.0)
-    sorbet-runtime (0.5.11444)
+    sorbet-runtime (0.5.11463)
     stringio (3.1.1)
     strscan (3.1.0)
-    tilt (2.3.0)
+    tilt (2.4.0)
     unicode-display_width (2.5.0)
     uri (0.13.0)
 
