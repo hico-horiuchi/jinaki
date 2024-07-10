@@ -17,8 +17,9 @@ GEM
       faraday-xml
       mime-types (>= 2.6, < 4.0)
       multi_xml (>= 0.5.5, < 1.0)
-    faraday (2.9.2)
+    faraday (2.10.0)
       faraday-net_http (>= 2.0, < 3.2)
+      logger
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (3.1.0)
@@ -110,7 +111,7 @@ GEM
       rubocop (~> 1.0)
     rubocop-rspec (3.0.2)
       rubocop (~> 1.61)
-    ruby-lsp (0.17.4)
+    ruby-lsp (0.17.5)
       language_server-protocol (~> 3.17.0)
       prism (>= 0.29.0, < 0.31)
       rbs (>= 3, < 4)
@@ -130,7 +131,7 @@ GEM
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     slack-incoming-webhooks (0.3.0)
-    sorbet-runtime (0.5.11473)
+    sorbet-runtime (0.5.11475)
     stringio (3.1.1)
     strscan (3.1.0)
     tilt (2.4.0)
@@ -161,7 +162,7 @@ DEPENDENCIES
   slack-incoming-webhooks
 
 RUBY VERSION
-   ruby 3.3.3p89
+   ruby 3.3.4p94
 
 BUNDLED WITH
    2.5.9
