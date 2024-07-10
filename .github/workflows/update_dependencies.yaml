@@ -20,7 +20,7 @@ jobs:
       - name: set latest ruby version
         id: latest_ruby
         run: |
-          version=$(curl -s https://api.github.com/repos/ruby/ruby/releases/latest | jq -r '.name' | tr -d 'v')
+          version=$(curl -s https://api.github.com/repos/ruby/ruby/releases/latest | jq -r '.tag_name' | tr -d 'v' | tr '_' '.')
           echo "version=${version}" >> "${GITHUB_OUTPUT}"
   pull_request:
     runs-on: ubuntu-latest
@@ -34,8 +34,9 @@ jobs:
           CURRENT: ${{ needs.preparation.outputs.current_ruby_version }}
           LATEST: ${{ needs.preparation.outputs.latest_ruby_version }}
         run: |
-          [ "$(echo ${CURRENT} | sed -r 's/\.[0-9]+$//g')" = "$(echo ${LATEST} | sed -r 's/\.[0-9]+$//g')" ]; ret=${?}
-          [ ${ret} = 0 ] && echo "${LATEST}" > .ruby-version
+          if [ "$(echo ${CURRENT} | sed -r 's/\.[0-9]+$//g')" = "$(echo ${LATEST} | sed -r 's/\.[0-9]+$//g')" ]; then
+            echo "${LATEST}" > .ruby-version
+          fi
       # https://github.com/ruby/setup-ruby
       - uses: ruby/setup-ruby@v1
         with:
