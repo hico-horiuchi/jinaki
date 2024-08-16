@@ -1,0 +1,19 @@
+---
+# specify exit code when any security issues are found
+exit-code: 1
+# specify trivyignore file
+ignorefile: .trivyignore.yaml
+# severities of security issues to be displayed
+severity:
+  # - UNKNOWN
+  # - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+scan:
+  # what security issues to detect
+  scanners:
+    - vuln
+vulnerability:
+  # display only fixed vulnerabilities
+  ignore-unfixed: true
