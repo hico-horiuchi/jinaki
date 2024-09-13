@@ -4,9 +4,9 @@ module Jinaki
       def self.registered(app)
         controller = Controller::Esa.new
 
-        app.post '/esa/events' do
+        app.post '/events' do
           controller.post_events(request)
-          status 204
+          status(204)
         end
       end
     end

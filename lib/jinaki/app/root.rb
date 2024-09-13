@@ -1,6 +1,6 @@
 module Jinaki
   module App
-    class Ping < Sinatra::Base
+    class Root < Sinatra::Base
       register Route::Ping
     end
   end

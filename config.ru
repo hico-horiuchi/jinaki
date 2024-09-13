@@ -1,4 +1,6 @@
 require File.expand_path('lib/jinaki', __dir__)
 
-use Jinaki::App::Esa
-run Jinaki::App::Ping
+run Rack::URLMap.new({
+                       '/' => Jinaki::App::Root,
+                       '/esa' => Jinaki::App::Esa
+                     })
