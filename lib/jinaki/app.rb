@@ -1,10 +1,6 @@
-module Jinaki
-  class App < Sinatra::Base
-    configure :production do
-      use Rack::EsaWebhooks, secret: ENV.fetch('ESA_SECRET_TOKEN', nil)
-    end
+Dir["#{__dir__}/app/*.rb"].each { |f| require f }
 
-    register Route::Esa
-    register Route::Ping
+module Jinaki
+  module App
   end
 end
