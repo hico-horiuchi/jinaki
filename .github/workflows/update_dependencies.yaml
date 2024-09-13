@@ -7,20 +7,15 @@ jobs:
   preparation:
     runs-on: ubuntu-latest
     outputs:
-      current_ruby_version: ${{ steps.current_ruby.outputs.version }}
       latest_ruby_version: ${{ steps.latest_ruby.outputs.version }}
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v4
-      - name: set current ruby version
-        id: current_ruby
-        run: |
-          version=$(cat .ruby-version)
-          echo "version=${version}" >> "${GITHUB_OUTPUT}"
       - name: set latest ruby version
         id: latest_ruby
         run: |
-          version=$(curl -s https://api.github.com/repos/ruby/ruby/releases/latest | jq -r '.tag_name' | tr -d 'v' | tr '_' '.')
+          minor_version="v$(cat .ruby-version | sed -r 's/\.[0-9]+$//g' | tr '.' '_')"
+          version=$(curl -s ${GITHUB_API_URL}/repos/ruby/ruby/releases | jq -r '.[].tag_name' | grep -v -e 'preview' -e 'rc' | grep ${minor_version} | sort | tail -n 1 | tr -d 'v' | tr '_' '.')
           echo "version=${version}" >> "${GITHUB_OUTPUT}"
   pull_request:
     runs-on: ubuntu-latest
@@ -31,12 +26,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: update ruby version
         env:
-          CURRENT: ${{ needs.preparation.outputs.current_ruby_version }}
           LATEST: ${{ needs.preparation.outputs.latest_ruby_version }}
         run: |
-          if [ "$(echo ${CURRENT} | sed -r 's/\.[0-9]+$//g')" = "$(echo ${LATEST} | sed -r 's/\.[0-9]+$//g')" ]; then
-            echo "${LATEST}" > .ruby-version
-          fi
+          echo ${LATEST} > .ruby-version
       # https://github.com/ruby/setup-ruby
       - uses: ruby/setup-ruby@v1
         with:

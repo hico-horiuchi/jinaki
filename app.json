@@ -1,0 +1,58 @@
+{
+  "name": "jinaki",
+  "website": "https://jinaki.hiconyan.app//",
+  "repository": "https://github.com/hico-horiuchi/jinaki",
+  "logo": "https://jinaki.hiconyan.app//images/apple-touch-icon.png",
+  "env": {
+    "ESA_ACCESS_TOKEN": {
+      "description": "ESA_ACCESS_TOKEN"
+    },
+    "ESA_CURRENT_TEAM": {
+      "description": "ESA_CURRENT_TEAM",
+      "value": "hico"
+    },
+    "ESA_SECRET_TOKEN": {
+      "description": "ESA_SECRET_TOKEN"
+    },
+    "LANG": {
+      "description": "LANG",
+      "value": "ja_JP.UTF-8"
+    },
+    "SLACK_WEBHOOK_URL": {
+      "description": "SLACK_WEBHOOK_URL"
+    },
+    "TZ": {
+      "description": "TZ",
+      "value": "Asia/Tokyo"
+    },
+    "WAKATIME_API_KEY": {
+      "description": "WAKATIME_API_KEY"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": ["scheduler:standard"],
+  "cron": [
+    {
+      "command": "bundle exec rake jinaki:gc",
+      "schedule": "0 13 * * *"
+    },
+    {
+      "command": "bundle exec rake jinaki:wakatime",
+      "schedule": "0 17 * * *"
+    }
+  ],
+  "healthchecks": {
+    "web": [
+      {
+        "path": "/ping",
+        "type": "startup"
+      }
+    ]
+  }
+}
