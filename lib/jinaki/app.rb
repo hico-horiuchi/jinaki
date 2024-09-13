@@ -5,5 +5,6 @@ module Jinaki
     end
 
     register Route::Esa
+    register Route::Ping
   end
 end

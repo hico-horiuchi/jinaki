@@ -1,0 +1,63 @@
+name: CD
+on:
+  push:
+    branches:
+      - master
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') == false }}
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.DOKKU_SSH_KEY }}
+      SSH_PROXY_COMMAND: /tmp/cloudflared access ssh --id ${{ secrets.CF_ACCESS_CLIENT_ID }} --secret ${{ secrets.CF_ACCESS_CLIENT_SECRET }} --hostname %h
+    steps:
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: install cloudflared
+        run: |
+          curl -Ls -o /tmp/cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+          chmod +x /tmp/cloudflared
+          /tmp/cloudflared -v
+      - name: configure git
+        run: |
+          git checkout master
+          git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --local user.name "${GITHUB_ACTOR}"
+      - name: setup ssh client
+        run: |
+          mkdir -p ~/.ssh
+          echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_ecdsa
+          chmod 400 ~/.ssh/id_ecdsa
+          ssh \
+            -fMN \
+            -S /tmp/sshsocks.hiconyan \
+            -i ~/.ssh/id_ecdsa \
+            -o ProxyCommand="${SSH_PROXY_COMMAND}" \
+            -o StrictHostKeyChecking=no \
+            hiconyan@ssh.hiconyan.app
+      - name: setup dokku client
+        run: |
+          cat << 'EOS' > dokku
+          #!/bin/bash
+          ssh -t -S /tmp/sshsocks.hiconyan hiconyan@ssh.hiconyan.app -- dokku "${@}"
+          EOS
+          chmod +x dokku
+      - name: decrypt env file
+        run: |
+          PASS=$(cat ~/.ssh/id_ecdsa | shasum -a 256 | head -c 32)
+          openssl enc -a -d -aes-256-cbc -pbkdf2 -in .env.enc -out .env -pass pass:${PASS}
+          git add -f .env
+          git commit -m ":unlock: Decrypt env file"
+      - name: prepare app
+        run: |
+          ret=0 && ./dokku apps:list | grep '^jinaki$' > /dev/null || ret=${?}
+          if [[ ${ret} -ne 0 ]]; then
+            ./dokku apps:create jinaki
+          fi
+      - name: deploy app to dokku
+        run: |
+          git config core.sshCommand 'ssh -i ~/.ssh/id_ecdsa -o ProxyCommand="`echo "${SSH_PROXY_COMMAND}"`" -o StrictHostKeyChecking=no'
+          git remote add dokku dokku@ssh.hiconyan.app:jinaki
+          git push -f dokku master:main

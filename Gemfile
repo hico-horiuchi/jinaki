@@ -2,6 +2,7 @@ ruby file: '.ruby-version'
 
 source 'https://rubygems.org'
 
+gem 'dotenv'
 gem 'esa'
 gem 'faraday'
 gem 'puma'
