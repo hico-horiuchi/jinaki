@@ -61,3 +61,12 @@ jobs:
           git config core.sshCommand 'ssh -i ~/.ssh/id_ecdsa -o ProxyCommand="`echo "${SSH_PROXY_COMMAND}"`" -o StrictHostKeyChecking=no'
           git remote add dokku dokku@ssh.hiconyan.app:jinaki
           git push -f dokku master:main
+      - name: configure mackerel-agent
+        run: |
+          ssh -t -S /tmp/sshsocks.hiconyan hiconyan@ssh.hiconyan.app << 'EOC'
+          CONF='/etc/mackerel-agent/conf.d/jinaki.conf'
+          sudo rm -f ${CONF}
+          echo '[plugin.metrics.accesslog_jinaki]'                                                                                   | sudo tee -a ${CONF}
+          echo 'command = "/usr/bin/mackerel-plugin-accesslog -metric-key-prefix accesslog_jinaki /var/log/nginx/jinaki-access.log"' | sudo tee -a ${CONF}
+          sudo systemctl reload mackerel-agent
+          EOC
