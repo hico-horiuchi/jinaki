@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') == false }}
     env:
+      SSH_CONTROL_PATH: /tmp/sshsocks.hiconyan
       SSH_PRIVATE_KEY: ${{ secrets.DOKKU_SSH_KEY }}
       SSH_PROXY_COMMAND: /tmp/cloudflared access ssh --id ${{ secrets.CF_ACCESS_CLIENT_ID }} --secret ${{ secrets.CF_ACCESS_CLIENT_SECRET }} --hostname %h
     steps:
@@ -32,7 +33,7 @@ jobs:
           chmod 400 ~/.ssh/id_ecdsa
           ssh \
             -fMN \
-            -S /tmp/sshsocks.hiconyan \
+            -S ${SSH_CONTROL_PATH} \
             -i ~/.ssh/id_ecdsa \
             -o ProxyCommand="${SSH_PROXY_COMMAND}" \
             -o StrictHostKeyChecking=no \
@@ -41,7 +42,7 @@ jobs:
         run: |
           cat << 'EOS' > dokku
           #!/bin/bash
-          ssh -t -S /tmp/sshsocks.hiconyan hiconyan@ssh.hiconyan.app -- dokku "${@}"
+          ssh -t -S ${SSH_CONTROL_PATH} hiconyan@ssh.hiconyan.app -- dokku "${@}"
           EOS
           chmod +x dokku
       - name: decrypt env file
@@ -63,7 +64,7 @@ jobs:
           git push -f dokku master:main
       - name: configure mackerel-agent
         run: |
-          ssh -t -S /tmp/sshsocks.hiconyan hiconyan@ssh.hiconyan.app << 'EOC'
+          ssh -t -S ${SSH_CONTROL_PATH} hiconyan@ssh.hiconyan.app << 'EOC'
           CONF='/etc/mackerel-agent/conf.d/jinaki.conf'
           sudo rm -f ${CONF}
           echo '[plugin.metrics.accesslog_jinaki]'                                                                                   | sudo tee -a ${CONF}

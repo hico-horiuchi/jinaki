@@ -33,11 +33,11 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: bundle update
+      - name: update dependencies
         run: |
           bundle config set frozen false
           bundle update
-      - name: set date
+      - name: set current date
         id: date
         run: |
           date=$(date '+%Y-%m-%d')
