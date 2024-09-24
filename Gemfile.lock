@@ -111,7 +111,7 @@ GEM
       rubocop (~> 1.0)
     rubocop-rspec (3.0.5)
       rubocop (~> 1.61)
-    ruby-lsp (0.18.1)
+    ruby-lsp (0.18.2)
       language_server-protocol (~> 3.17.0)
       prism (~> 1.0)
       rbs (>= 3, < 4)
@@ -138,8 +138,7 @@ GEM
     uri (0.13.1)
 
 PLATFORMS
-  arm64-darwin-23
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   debug
@@ -166,4 +165,4 @@ RUBY VERSION
    ruby 3.3.5p100
 
 BUNDLED WITH
-   2.5.9
+   2.5.19
