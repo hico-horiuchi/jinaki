@@ -71,7 +71,9 @@ jobs:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v4
       # https://github.com/aquasecurity/trivy-action
-      - uses: aquasecurity/trivy-action@0.20.0
+      - uses: aquasecurity/trivy-action@0.28.0
+        env:
+          TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db,public.ecr.aws/aquasecurity/trivy-db
         with:
           scan-ref: Gemfile.lock
           scan-type: fs
