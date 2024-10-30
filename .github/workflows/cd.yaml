@@ -7,7 +7,6 @@ on:
 jobs:
   delivery:
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.pull_request.labels.*.name, 'dependencies') == false }}
     env:
       SSH_CONTROL_PATH: /tmp/sshsocks.hiconyan
       SSH_PRIVATE_KEY: ${{ secrets.DOKKU_SSH_KEY }}
