@@ -30,7 +30,7 @@ namespace :jinaki do
     next if posts.empty?
 
     comments = esa_client.comments(posts[0]['number']).body['comments']
-    wakatime_comments = comments.select { |c| c['body_md'].include?('WakaTime Summaries') }
+    wakatime_comments = comments.select { it['body_md'].include?('WakaTime Summaries') }
 
     next unless wakatime_comments.empty?
 
@@ -39,20 +39,20 @@ namespace :jinaki do
     response = wakatime_client.get('/api/v1/users/current/summaries', { start: start_date, end: end_date })
 
     summaries = JSON.parse(response.body)['data'][0]
-    projects = summaries['projects'].sort_by { |p| p['total_seconds'] }.reverse
-    languages = summaries['languages'].sort_by { |l| l['total_seconds'] }.reject { |l| l['name'] == 'Other' }.reverse
+    projects = summaries['projects'].sort_by { it['total_seconds'] }.reverse
+    languages = summaries['languages'].sort_by { it['total_seconds'] }.reject { it['name'] == 'Other' }.reverse
 
     body_md = ''
 
     unless projects.empty?
       body_md += "- Projects\n"
-      body_md += projects.map { |p| "  - #{p['name']}: #{p['text']}" }.join("\n")
+      body_md += projects.map { "  - #{it['name']}: #{it['text']}" }.join("\n")
       body_md += "\n"
     end
 
     unless languages.empty?
       body_md += "- Languages\n"
-      body_md += languages.map { |l| "  - #{l['name']}: #{l['text']}" }.join("\n")
+      body_md += languages.map { "  - #{it['name']}: #{it['text']}" }.join("\n")
       body_md += "\n"
     end
 
