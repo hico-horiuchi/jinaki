@@ -1,4 +1,4 @@
-Dir["#{__dir__}/model/*.rb"].each { |f| require f }
+Dir["#{__dir__}/model/*.rb"].each { require it }
 
 module Jinaki
   module Model
