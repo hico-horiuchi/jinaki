@@ -58,7 +58,7 @@ GEM
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    psych (5.2.2)
+    psych (5.2.3)
       date
       stringio
     puma (6.5.0)
@@ -137,7 +137,7 @@ GEM
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     slack-incoming-webhooks (0.3.0)
-    sorbet-runtime (0.5.11763)
+    sorbet-runtime (0.5.11765)
     stringio (3.1.2)
     tilt (2.6.0)
     unicode-display_width (3.1.4)
