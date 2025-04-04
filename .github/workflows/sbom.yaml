@@ -9,10 +9,10 @@ jobs:
   security_check:
     runs-on: ubuntu-latest
     steps:
-      # https://github.com/actions/checkout
-      - uses: actions/checkout@v4
-      # https://github.com/aquasecurity/trivy-action
-      - uses: aquasecurity/trivy-action@0.28.0
+      # https://github.com/actions/checkout/releases/tag/v4.2.2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      # https://github.com/aquasecurity/trivy-action/releases/tag/0.28.0
+      - uses: aquasecurity/trivy-action@915b19bbe73b92a6cf82a1bc12b087c9a19a5fe2
         with:
           format: github
           github-pat: ${{ secrets.GITHUB_TOKEN }}
@@ -20,8 +20,8 @@ jobs:
           scan-ref: Gemfile.lock
           scan-type: fs
           trivy-config: .trivy.yaml
-      # https://github.com/actions/upload-artifact
-      - uses: actions/upload-artifact@v4
+      # https://github.com/actions/upload-artifact/releases/tag/v4.6.2
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: trivy-sbom-report
           path: ${{ github.workspace }}/dependency-results.sbom.json
