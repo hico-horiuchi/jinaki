@@ -63,6 +63,7 @@ GEM
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    pstore (0.2.0)
     psych (5.2.5)
       date
       stringio
@@ -165,6 +166,7 @@ DEPENDENCIES
   faraday
   ostruct
   pry
+  pstore
   puma
   rack-esa_webhooks
   rack-test
