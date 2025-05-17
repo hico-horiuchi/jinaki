@@ -50,6 +50,7 @@
   "healthchecks": {
     "web": [
       {
+        "initialDelay": 5,
         "path": "/ping",
         "type": "startup"
       }
