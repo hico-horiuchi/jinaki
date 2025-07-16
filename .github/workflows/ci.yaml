@@ -10,8 +10,8 @@ jobs:
     steps:
       # https://github.com/actions/checkout/releases/tag/v4.2.2
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      # https://github.com/ruby/setup-ruby/releases/tag/v1.241.0
-      - uses: ruby/setup-ruby@bb0f760b6c925183520ee0bcc9c4a432a7c8c3c6
+      # https://github.com/ruby/setup-ruby/releases/tag/v1.246.0
+      - uses: ruby/setup-ruby@a4f838919020b587bb8dd4493e8881bb113d3be7
         with:
           bundler-cache: true
       # https://github.com/reviewdog/action-rubocop/releases/tag/v2.21.2
@@ -27,8 +27,8 @@ jobs:
     steps:
       # https://github.com/actions/checkout/releases/tag/v4.2.2
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      # https://github.com/ruby/setup-ruby/releases/tag/v1.241.0
-      - uses: ruby/setup-ruby@bb0f760b6c925183520ee0bcc9c4a432a7c8c3c6
+      # https://github.com/ruby/setup-ruby/releases/tag/v1.246.0
+      - uses: ruby/setup-ruby@a4f838919020b587bb8dd4493e8881bb113d3be7
         with:
           bundler-cache: true
       - name: execute rspec
