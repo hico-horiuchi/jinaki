@@ -29,8 +29,8 @@ jobs:
           LATEST: ${{ needs.preparation.outputs.latest_ruby_version }}
         run: |
           echo ${LATEST} > .ruby-version
-      # https://github.com/ruby/setup-ruby/releases/tag/v1.246.0
-      - uses: ruby/setup-ruby@a4f838919020b587bb8dd4493e8881bb113d3be7
+      # https://github.com/ruby/setup-ruby/releases/tag/v1.262.0
+      - uses: ruby/setup-ruby@cf7216d52fba1017929b4d7162fabe2b30af5b49
         with:
           bundler-cache: true
       - name: update dependencies
