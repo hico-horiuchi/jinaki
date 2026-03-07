@@ -15,7 +15,7 @@ AllCops:
     - spec/**/*.rb
   NewCops: enable
   SuggestExtensions: false
-  TargetRubyVersion: 3.4
+  TargetRubyVersion: 4.0
 
 Layout/LineLength:
   Enabled: false

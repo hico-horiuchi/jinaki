@@ -10,8 +10,8 @@ jobs:
     steps:
       # https://github.com/actions/checkout/releases/tag/v4.2.2
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      # https://github.com/ruby/setup-ruby/releases/tag/v1.271.0
-      - uses: ruby/setup-ruby@f8d7259c7a66155a7c4a157a1a10ca601f186594
+      # https://github.com/ruby/setup-ruby/releases/tag/v1.282.0
+      - uses: ruby/setup-ruby@4fc31e1c823882afd7ef55985266a526c589de90
         with:
           bundler-cache: true
       # https://github.com/reviewdog/action-rubocop/releases/tag/v2.21.2
@@ -27,8 +27,8 @@ jobs:
     steps:
       # https://github.com/actions/checkout/releases/tag/v4.2.2
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      # https://github.com/ruby/setup-ruby/releases/tag/v1.271.0
-      - uses: ruby/setup-ruby@f8d7259c7a66155a7c4a157a1a10ca601f186594
+      # https://github.com/ruby/setup-ruby/releases/tag/v1.282.0
+      - uses: ruby/setup-ruby@4fc31e1c823882afd7ef55985266a526c589de90
         with:
           bundler-cache: true
       - name: execute rspec
@@ -70,8 +70,8 @@ jobs:
     steps:
       # https://github.com/actions/checkout/releases/tag/v4.2.2
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      # https://github.com/aquasecurity/trivy-action/releases/tag/0.28.0
-      - uses: aquasecurity/trivy-action@915b19bbe73b92a6cf82a1bc12b087c9a19a5fe2
+      # https://github.com/aquasecurity/trivy-action/releases/tag/0.35.0
+      - uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f12
         with:
           scan-ref: Gemfile.lock
           scan-type: fs
