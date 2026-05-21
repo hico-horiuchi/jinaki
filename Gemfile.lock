@@ -26,7 +26,7 @@ GEM
       logger
     faraday-multipart (1.2.0)
       multipart-post (~> 2.0)
-    faraday-net_http (3.4.2)
+    faraday-net_http (3.4.3)
       net-http (~> 0.5)
     faraday-xml (0.2.2)
       faraday (>= 1.10, < 3)
@@ -199,7 +199,7 @@ CHECKSUMS
   esa (3.5.0) sha256=0921b967b94391bd4bbbcbec98a5bf9c5846cdca6cf461951c91bec421ccb005
   faraday (2.14.2) sha256=73ccb9994a9e8648f010e32eca2ae82e41c57860aa10932cda29418b9e0223ad
   faraday-multipart (1.2.0) sha256=7d89a949693714176f612323ca13746a2ded204031a6ba528adee788694ef757
-  faraday-net_http (3.4.2) sha256=f147758260d3526939bf57ecf911682f94926a3666502e24c69992765875906c
+  faraday-net_http (3.4.3) sha256=9db13becec9312f345a769eeeecf9049c9287d54c0ae053d7235228993a4eec1
   faraday-xml (0.2.2) sha256=99d161a49148e23dbc71b58f50a1728ae265fab6664c2c516c056c106ef51646
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
@@ -262,7 +262,7 @@ CHECKSUMS
   uri (1.1.1) sha256=379fa58d27ffb1387eaada68c749d1426738bd0f654d812fcc07e7568f5c57c6
 
 RUBY VERSION
-  ruby 4.0.4
+  ruby 4.0.5
 
 BUNDLED WITH
   4.0.7
