@@ -11,6 +11,8 @@ jobs:
     steps:
       # https://github.com/actions/checkout/releases/tag/v4.2.2
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
       - name: set latest ruby version
         id: latest_ruby
         run: |
@@ -24,6 +26,8 @@ jobs:
     steps:
       # https://github.com/actions/checkout/releases/tag/v4.2.2
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
       - name: update ruby version
         env:
           LATEST: ${{ needs.preparation.outputs.latest_ruby_version }}
