@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
-      # https://github.com/ruby/setup-ruby/releases/tag/v1.317.0
-      - uses: ruby/setup-ruby@6e5d382445ae5590b7449d8b3bc8cb1c2c27f617
+      # https://github.com/ruby/setup-ruby/releases/tag/v1.322.0
+      - uses: ruby/setup-ruby@bec3f19a76460dbe12f60def7d1a77585f07516c
         with:
           bundler-cache: true
       # https://github.com/reviewdog/action-rubocop/releases/tag/v2.21.2
@@ -31,8 +31,8 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
-      # https://github.com/ruby/setup-ruby/releases/tag/v1.317.0
-      - uses: ruby/setup-ruby@6e5d382445ae5590b7449d8b3bc8cb1c2c27f617
+      # https://github.com/ruby/setup-ruby/releases/tag/v1.322.0
+      - uses: ruby/setup-ruby@bec3f19a76460dbe12f60def7d1a77585f07516c
         with:
           bundler-cache: true
       - name: execute rspec
