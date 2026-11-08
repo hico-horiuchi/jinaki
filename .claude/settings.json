@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "attribution": {
+    "commit": "Co-authored-by: Claude <noreply@anthropic.com>",
+    "pr": "Generated with Claude Code"
+  },
+  "language": "japanese",
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:*.github.com)",
+      "WebFetch(domain:*.githubusercontent.com)",
+      "WebFetch(domain:*.ruby-lang.org)",
+      "WebFetch(domain:rubydoc.info)",
+      "WebFetch(domain:rubygems.org)",
+      "WebFetch(domain:*.rubygems.org)",
+      "WebFetch(domain:bundler.io)",
+      "WebFetch(domain:*.rubocop.org)"
+    ],
+    "ask": [
+      "Edit(.github/workflows/**)",
+      "Edit(.gitignore)",
+      "Edit(.trivy.yaml)",
+      "Edit(.trivyignore.yaml)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.enc)",
+      "Bash(rm:*)",
+      "Bash(sudo:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)"
+    ],
+    "disableBypassPermissionsMode": "disable"
+  },
+  "sandbox": {
+    "allowUnsandboxedCommands": false,
+    "autoAllowBashIfSandboxed": true,
+    "enableWeakerNetworkIsolation": true,
+    "enabled": true,
+    "failIfUnavailable": true,
+    "filesystem": {
+      "allowRead": [
+        "~/.bundle/cache/",
+        "~/.bundle/config",
+        "~/.cache/rubocop_cache/",
+        "~/.gem/ruby/",
+        "~/.gem/specs/",
+        "~/.gemrc"
+      ],
+      "allowWrite": [
+        "~/.bundle/cache/",
+        "~/.cache/rubocop_cache/",
+        "~/.gem/ruby/",
+        "~/.gem/specs/"
+      ],
+      "denyWrite": [
+        ".github/workflows",
+        ".gitignore",
+        ".trivy.yaml",
+        ".trivyignore.yaml"
+      ]
+    },
+    "network": {
+      "allowedDomains": [
+        "ghcr.io",
+        "public.ecr.aws"
+      ]
+    }
+  }
+}
