@@ -25,6 +25,7 @@
     ],
     "deny": [
       "Read(.env)",
+      "Read(.env.dec)",
       "Read(.env.enc)",
       "Bash(rm:*)",
       "Bash(sudo:*)",
@@ -36,6 +37,22 @@
   "sandbox": {
     "allowUnsandboxedCommands": false,
     "autoAllowBashIfSandboxed": true,
+    "credentials": {
+      "files": [
+        {
+          "mode": "deny",
+          "path": ".env"
+        },
+        {
+          "mode": "deny",
+          "path": ".env.dec"
+        },
+        {
+          "mode": "deny",
+          "path": ".env.enc"
+        }
+      ]
+    },
     "enableWeakerNetworkIsolation": true,
     "enabled": true,
     "failIfUnavailable": true,
